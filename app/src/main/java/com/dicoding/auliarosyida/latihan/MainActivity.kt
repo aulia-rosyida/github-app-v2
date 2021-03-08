@@ -14,6 +14,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var lengthInput: EditText
     private lateinit var btnCalculate: Button
     private lateinit var resultText: TextView
+    companion object {
+        private const val STATE_RESULT = "state_result"
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(STATE_RESULT, resultText.text.toString())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +34,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         resultText = findViewById(R.id.result_text)
 
         btnCalculate.setOnClickListener(this)
+
+        if(savedInstanceState != null){
+            val result = savedInstanceState.getString(STATE_RESULT)
+            resultText.text = result
+        }
     }
 
     override fun onClick(v: View?) {
