@@ -5,5 +5,6 @@
     <string name="tinggi">Tinggi</string>
     <string name="hitung">Hitung</string>
     <string name="hasil">Hasil</string>
-    <string name="hintNumberInput">Input a number...</string>
+    <string name="hintNumberInput">Input angka disini...</string>
+    <string name="isiDulu">isi dulu fieldnya yuk</string>
 </resources>

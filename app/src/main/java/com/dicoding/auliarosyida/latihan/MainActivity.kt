@@ -34,8 +34,27 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             val inputHeight = heightInput.text.toString().trim()
             val inputWidth = widthInput.text.toString().trim()
 
-            val volume = inputLength.toDouble() * inputHeight.toDouble() * inputWidth.toDouble()
-            resultText.text = volume.toString()
+            var isEmptyFields = false
+
+            when{
+                inputLength.isEmpty() -> {
+                    isEmptyFields = true
+                    lengthInput.error = getString(R.string.isiDulu)
+                }
+                inputWidth.isEmpty() -> {
+                    isEmptyFields = true
+                    widthInput.error = getString(R.string.isiDulu)
+                }
+                inputHeight.isEmpty() -> {
+                    isEmptyFields = true
+                    heightInput.error = getString(R.string.isiDulu)
+                }
+            }
+
+            if(!isEmptyFields) {
+                val volume = inputLength.toDouble() * inputHeight.toDouble() * inputWidth.toDouble()
+                resultText.text = volume.toString()
+            }
         }
     }
 }
