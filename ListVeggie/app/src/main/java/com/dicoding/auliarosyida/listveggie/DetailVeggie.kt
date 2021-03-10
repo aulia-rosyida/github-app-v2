@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 
 class DetailVeggie : AppCompatActivity() {
+    private var title: String = "Veggie Detail"
     companion object {
         const val EXTRA_DETAIL = "extra_detail"
         const val EXTRA_NAME = "extra_name"
@@ -22,11 +23,16 @@ class DetailVeggie : AppCompatActivity() {
 
         val name = intent.getStringExtra(EXTRA_NAME)
         tvNameReceived.text = name.toString()
+        title = "Detail of ${name.toString()}"
+        setActionBarTitle(title)
 
         val detail = intent.getStringExtra(EXTRA_DETAIL)
         tvDetailReceived.text = detail.toString()
 
         val photo = intent.getIntExtra(EXTRA_PHOTO,0)
         tvImageReceived.setImageResource(photo)
+    }
+    private fun setActionBarTitle(title: String) {
+        supportActionBar?.title = title
     }
 }

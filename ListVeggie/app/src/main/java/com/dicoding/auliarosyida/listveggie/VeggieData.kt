@@ -1,5 +1,6 @@
 package com.dicoding.auliarosyida.listveggie
 
+//sources data: https://www.medicalnewstoday.com/articles/323319#1.-Spinach
 object VeggieData {
     private val veggieNames = arrayOf("Beet",
         "Bell Pepper",
