@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailUser">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_received_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:lineSpacingMultiplier="1"
+            android:layout_marginBottom="16dp"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            tools:text="@string/name" />
+        <TextView
+            android:id="@+id/tv_received_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:lineSpacingMultiplier="1"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"
+            tools:text="@string/username" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_received_photo"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center_horizontal"
+        tools:src="@android:color/darker_gray" />
+        <TextView
+            android:id="@+id/tv_received_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_action_location"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp"
+            tools:text="@string/location" />
+
+        <TextView
+            android:id="@+id/tv_received_company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_baseline_work"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp"
+            tools:text="@string/company" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center_horizontal"
+            android:weightSum="3"
+            android:orientation="horizontal">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_received_repo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_column="0"
+                    android:layout_weight="0.3"
+                    tools:text="@string/total_repo" />
+                <TextView
+                    android:id="@+id/tv_received_followers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_column="1"
+                    android:layout_weight="0.3"
+                    tools:text="@string/total_followers" />
+                <TextView
+                    android:id="@+id/tv_received_following"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_column="2"
+                    android:layout_weight="0.3"
+                    tools:text="@string/total_following" />
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/repo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:textSize="20sp"
+                    android:layout_weight="0.3"
+                    android:layout_gravity="center_horizontal"
+                    tools:text="@string/tag_repo" />
+
+                <TextView
+                    android:id="@+id/follower"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_column="1"
+                    android:layout_weight="0.3"
+                    android:textSize="20sp"
+                    tools:text="@string/tag_followers" />
+                <TextView
+                    android:id="@+id/following"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:textSize="20sp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_column="2"
+                    tools:text="@string/tag_following" />
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+
+</ScrollView>

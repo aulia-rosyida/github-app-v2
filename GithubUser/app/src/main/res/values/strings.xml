@@ -2,6 +2,15 @@
     <string name="app_name">GithubUser</string>
     <string name="name">Name github</string>
     <string name="username">Username github</string>
+    <string name="lorem">Lorem</string>
+    <string name="location">Location</string>
+    <string name="total_repo">XXX</string>
+    <string name="total_followers">YYY</string>
+    <string name="total_following">ZZZ</string>
+    <string name="tag_repo">Repositories</string>
+    <string name="tag_followers">Followers</string>
+    <string name="tag_following">Following</string>
+    <string name="company">Company</string>
 
     <string-array name="username">
         <item>JakeWharton</item>

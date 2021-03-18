@@ -1,5 +1,6 @@
 package com.dicoding.auliarosyida.githubuser
 
+import android.content.Intent
 import android.content.res.TypedArray
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,8 @@ import android.widget.ListView
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
+    private var title: String = "Github User List"
+
     private lateinit var adapter: UserAdapter
     private lateinit var dataUsername: Array<String>
     private lateinit var dataName: Array<String>
@@ -22,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setActionBarTitle(title)
 
         val listView: ListView = findViewById(R.id.lv_list)
         adapter = UserAdapter(this)
@@ -34,6 +38,9 @@ class MainActivity : AppCompatActivity() {
 
         listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             Toast.makeText(this@MainActivity, users[position].name, Toast.LENGTH_SHORT).show()
+            val moveWithObjectIntent = Intent(this@MainActivity, DetailUser::class.java)
+            moveWithObjectIntent.putExtra(DetailUser.EXTRA_USER, users[position])
+            startActivity(moveWithObjectIntent)
         }
     }
 
@@ -63,5 +70,9 @@ class MainActivity : AppCompatActivity() {
             users.add(user)
         }
         adapter.users = users
+    }
+
+    private fun setActionBarTitle(title: String) {
+        supportActionBar?.title = title
     }
 }
