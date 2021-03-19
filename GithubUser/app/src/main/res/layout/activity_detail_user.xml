@@ -38,25 +38,6 @@
         android:layout_height="250dp"
         android:layout_gravity="center_horizontal"
         tools:src="@android:color/darker_gray" />
-        <TextView
-            android:id="@+id/tv_received_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:drawableLeft="@drawable/ic_action_location"
-            android:textSize="20sp"
-            android:layout_marginTop="16dp"
-            tools:text="@string/location" />
-
-        <TextView
-            android:id="@+id/tv_received_company"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:drawableLeft="@drawable/ic_baseline_work"
-            android:textSize="20sp"
-            android:layout_marginTop="16dp"
-            tools:text="@string/company" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -134,6 +115,26 @@
                     tools:text="@string/tag_following" />
             </TableRow>
         </TableLayout>
+
+        <TextView
+            android:id="@+id/tv_received_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_action_location"
+            android:textSize="15sp"
+            android:layout_marginTop="16dp"
+            tools:text="@string/location" />
+
+        <TextView
+            android:id="@+id/tv_received_company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_baseline_work"
+            android:textSize="15sp"
+            android:layout_marginTop="16dp"
+            tools:text="@string/company" />
 
     </LinearLayout>
 
