@@ -1,0 +1,4 @@
+com/dicoding/auliarosyida/myalarmmanager/BuildConfig.java
+ com.dicoding.auliarosyida.myalarmmanager.BuildConfig
+com/dicoding/auliarosyida/myalarmmanager/databinding/ActivityMainBinding.java
+ com.dicoding.auliarosyida.myalarmmanager.databinding.ActivityMainBinding

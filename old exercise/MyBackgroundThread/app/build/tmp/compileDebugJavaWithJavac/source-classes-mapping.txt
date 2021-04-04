@@ -1,0 +1,4 @@
+com/dicoding/auliarosyida/mybackgroundthread/BuildConfig.java
+ com.dicoding.auliarosyida.mybackgroundthread.BuildConfig
+com/dicoding/auliarosyida/mybackgroundthread/databinding/ActivityMainBinding.java
+ com.dicoding.auliarosyida.mybackgroundthread.databinding.ActivityMainBinding

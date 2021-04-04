@@ -1,0 +1,2 @@
+com/dicoding/auliarosyida/myunittesting/test/BuildConfig.java
+ com.dicoding.auliarosyida.myunittesting.test.BuildConfig

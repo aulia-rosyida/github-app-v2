@@ -1,2 +1,0 @@
-com/dicoding/auliarosyida/latihan/BuildConfig.java
- com.dicoding.auliarosyida.latihan.BuildConfig

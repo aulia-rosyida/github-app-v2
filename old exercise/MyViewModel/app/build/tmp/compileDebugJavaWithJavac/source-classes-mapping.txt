@@ -1,0 +1,6 @@
+com/dicoding/auliarosyida/myviewmodel/databinding/ActivityMainBinding.java
+ com.dicoding.auliarosyida.myviewmodel.databinding.ActivityMainBinding
+com/dicoding/auliarosyida/myviewmodel/BuildConfig.java
+ com.dicoding.auliarosyida.myviewmodel.BuildConfig
+com/dicoding/auliarosyida/myviewmodel/databinding/WeatherItemsBinding.java
+ com.dicoding.auliarosyida.myviewmodel.databinding.WeatherItemsBinding

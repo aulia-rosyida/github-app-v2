@@ -1,0 +1,6 @@
+com/dicoding/auliarosyida/mybroadcastreceiver/databinding/ActivitySmsReceiverBinding.java
+ com.dicoding.auliarosyida.mybroadcastreceiver.databinding.ActivitySmsReceiverBinding
+com/dicoding/auliarosyida/mybroadcastreceiver/BuildConfig.java
+ com.dicoding.auliarosyida.mybroadcastreceiver.BuildConfig
+com/dicoding/auliarosyida/mybroadcastreceiver/databinding/ActivityMainBinding.java
+ com.dicoding.auliarosyida.mybroadcastreceiver.databinding.ActivityMainBinding

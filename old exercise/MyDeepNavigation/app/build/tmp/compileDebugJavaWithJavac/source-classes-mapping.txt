@@ -1,0 +1,6 @@
+com/dicoding/auliarosyida/mydeepnavigation/databinding/ActivityDetailBinding.java
+ com.dicoding.auliarosyida.mydeepnavigation.databinding.ActivityDetailBinding
+com/dicoding/auliarosyida/mydeepnavigation/BuildConfig.java
+ com.dicoding.auliarosyida.mydeepnavigation.BuildConfig
+com/dicoding/auliarosyida/mydeepnavigation/databinding/ActivityMainBinding.java
+ com.dicoding.auliarosyida.mydeepnavigation.databinding.ActivityMainBinding

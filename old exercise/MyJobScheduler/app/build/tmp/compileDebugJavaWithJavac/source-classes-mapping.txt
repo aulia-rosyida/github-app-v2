@@ -1,0 +1,4 @@
+com/dicoding/auliarosyida/myjobscheduler/databinding/ActivityMainBinding.java
+ com.dicoding.auliarosyida.myjobscheduler.databinding.ActivityMainBinding
+com/dicoding/auliarosyida/myjobscheduler/BuildConfig.java
+ com.dicoding.auliarosyida.myjobscheduler.BuildConfig
