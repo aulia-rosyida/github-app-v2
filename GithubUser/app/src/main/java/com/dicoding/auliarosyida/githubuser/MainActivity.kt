@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.auliarosyida.githubuser.databinding.ActivityMainBinding
 import com.google.gson.Gson
 import com.loopj.android.http.AsyncHttpClient
+import com.loopj.android.http.AsyncHttpClient.log
 import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
 import org.json.JSONObject
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         listUserAdapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback{
             override fun onItemClicked(data: User) {
-                showSelectedUser(data)
+                getDetailUserApi(data, users.indexOf(data))
             }
         })
     }
@@ -105,8 +106,39 @@ class MainActivity : AppCompatActivity() {
         binding.rvList.adapter?.notifyDataSetChanged();
     }
 
+    private fun getDetailUserApi(aUser: User, idx: Int) {
+        val clientDetail = AsyncHttpClient()
+        clientDetail.addHeader("Authorization", "token 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")
+        clientDetail.addHeader("User-Agent", "request")
+        val url = "https://api.github.com/users/${aUser.username}"
+
+        clientDetail.get(url, object : AsyncHttpResponseHandler() {
+            override fun onSuccess(statusCode: Int, headers: Array<Header>, responseBody: ByteArray) {
+                // Parsing JSON
+                val resultDetail = String(responseBody)
+                log.d(TAG, resultDetail)
+
+                val gson = Gson()
+                val dataObject = JSONObject(resultDetail)
+                val newUser = gson.fromJson(dataObject.toString(), User::class.java)
+                showSelectedUser(newUser)
+            }
+            override fun onFailure(statusCode: Int, headers: Array<Header>, responseBody: ByteArray, error: Throwable) {
+                // Jika koneksi gagal
+                binding.progressBar.visibility = View.INVISIBLE
+                val errorMessage = when (statusCode) {
+                    401 -> "$statusCode : Bad Request"
+                    403 -> "$statusCode : Forbidden"
+                    404 -> "$statusCode : Not Found"
+                    else -> "$statusCode : ${error.message}"
+                }
+                Toast.makeText(this@MainActivity, errorMessage, Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
     private fun showSelectedUser(user: User) {
-        Toast.makeText(this, "Kamu memilih ${user.name}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Kamu memilih ${user.name?: user.username}", Toast.LENGTH_SHORT).show()
 
         val moveWithObjectIntent = Intent(this@MainActivity, DetailUser::class.java)
         moveWithObjectIntent.putExtra(DetailUser.EXTRA_USER, user)

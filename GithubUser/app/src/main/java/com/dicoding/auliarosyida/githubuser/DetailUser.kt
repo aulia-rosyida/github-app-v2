@@ -28,10 +28,10 @@ class DetailUser : AppCompatActivity() {
             .load(user.photo)
             .apply(RequestOptions().override(550, 550))
             .into(binding.imgReceivedPhoto)
-        binding.tvReceivedUsername.text = user.username
-        binding.tvReceivedName.text = user.name
-        binding.tvReceivedLocation.text = user.location
-        binding.tvReceivedCompany.text = user.company
+        binding.tvReceivedUsername.text = "@${user.username}"
+        binding.tvReceivedName.text = user.name?: user.username
+        binding.tvReceivedLocation.text = user.location?: "unknown location"
+        binding.tvReceivedCompany.text = user.company?: "unknown company"
         binding.tvReceivedRepo.text = user.repository.toString()
         binding.tvReceivedFollowers.text = user.followers.toString()
         binding.tvReceivedFollowing.text = user.following.toString()

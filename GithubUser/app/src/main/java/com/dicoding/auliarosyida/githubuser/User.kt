@@ -22,5 +22,4 @@ data class User(
     var following: String?,
     @SerializedName("avatar_url")
     var photo: String?
-//    var photo: Int = 0
 ) : Parcelable
