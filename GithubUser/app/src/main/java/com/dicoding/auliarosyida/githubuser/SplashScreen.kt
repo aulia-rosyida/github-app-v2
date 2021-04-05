@@ -19,6 +19,7 @@ class SplashScreen : AppCompatActivity() {
             // Start your app main activity
 
             startActivity(Intent(this,MainActivity::class.java))
+//            startActivity(Intent(this,TabLayoutActivity::class.java))
 
             // close this activity
             finish()
