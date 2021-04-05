@@ -8,35 +8,34 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.dicoding.auliarosyida.githubuser.databinding.ItemRowUserBinding
 
-class UserAdapter internal constructor(private val context: Context) : BaseAdapter() {
-    internal var users = arrayListOf<User>()
+class UserAdapter(private val listUser: ArrayList<User>): RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
 
-    override fun getCount(): Int = users.size
-
-    override fun getItem(i: Int): Any = users[i]
-
-    override fun getItemId(i: Int): Long = i.toLong()
-
-    override fun getView(position: Int, view: View?, viewGroup: ViewGroup?): View {
-        var itemView = view
-        if(itemView == null){
-            itemView = LayoutInflater.from(context).inflate(R.layout.item_row_user, viewGroup, false)
-        }
-        val viewHolder = ViewHolder(itemView as View)
-        val user = getItem(position) as User
-        viewHolder.bind(user)
-        return itemView
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ListViewHolder {
+        val binding = ItemRowUserBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+        return ListViewHolder(binding)
     }
 
-    private inner class ViewHolder constructor(view: View) {
-        private val txtUsername: TextView = view.findViewById(R.id.tv_item_username)
-        private val txtName: TextView = view.findViewById(R.id.tv_item_name)
-        private val imgPhoto: ImageView = view.findViewById(R.id.img_item_photo)
-        internal fun bind(u: User) {
-            txtUsername.text = u.username
-            txtName.text = u.name
-            imgPhoto.setImageResource(u.photo)
+    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+        holder.bind(listUser[position])
+    }
+
+    override fun getItemCount(): Int = listUser.size
+
+    inner class ListViewHolder(private val binding: ItemRowUserBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(user: User) {
+            with(binding){
+                Glide.with(itemView.context)
+                        .load(user.photo)
+                        .apply(RequestOptions().override(55, 55))
+                        .into(imgItemPhoto)
+                tvItemUsername.text = user.username
+                tvItemName.text = user.name
+            }
         }
     }
+
 }
