@@ -11,9 +11,8 @@
         android:roundIcon="@drawable/icon_github"
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUser">
-        <activity android:name=".TabLayoutActivity"></activity>
+        <activity android:name=".TabLayoutActivity"/>
         <activity android:name=".MainActivity" />
-        <activity android:name=".DetailUser" />
         <activity
             android:name=".SplashScreen"
             android:theme="@style/Theme.GithubUser.NoActionBar">
