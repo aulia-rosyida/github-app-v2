@@ -19,11 +19,15 @@ import cz.msebera.android.httpclient.Header
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
+
     private var title: String = "Github User List"
+    private var tempSearch = "aulia-"
+
     private lateinit var binding: ActivityMainBinding
     private var users = mutableListOf<User>()
-    private var tempSearch = "aulia-"
+
     private var listUserAdapter = UserAdapter(users)
+    private var dummyUser = User("Please try with another username","Sorry, this username could not been find", "", "","","","","")
 
     companion object {
         private val TAG = MainActivity::class.java.simpleName
@@ -125,6 +129,10 @@ class MainActivity : AppCompatActivity() {
                 listUser.add(data)
             }
             if(users.size == 0 )users.addAll(listUser)
+            else if(listUser.size == 0){
+                users.clear()
+                users.add(dummyUser)
+            }
             else{
                 users.clear()
                 users.addAll(listUser)

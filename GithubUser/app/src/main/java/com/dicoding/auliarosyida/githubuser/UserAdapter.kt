@@ -36,8 +36,15 @@ class UserAdapter(private val listUser: MutableList<User>): RecyclerView.Adapter
                         .load(user.photo)
                         .apply(RequestOptions().override(55, 55))
                         .into(imgItemPhoto)
-                tvItemUsername.text = "@${user.username}"
-                tvItemName.text = user.username
+
+                if(user.username.equals("Please try with another username")) {
+                    tvItemName.text = user.name
+                    tvItemUsername.text = user.username
+                }
+                else {
+                    tvItemName.text = user.username
+                    tvItemUsername.text = "@${user.username}"
+                }
 
                 itemView.setOnClickListener { onItemClickCallback?.onItemClicked(user) }
             }
