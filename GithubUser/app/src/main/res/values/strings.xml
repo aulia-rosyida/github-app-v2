@@ -13,4 +13,7 @@
     <string name="company">Company</string>
     <string name="by_developer">by Aulia Rosyida</string>
     <string name="footprint">Developed with passion</string>
+    <string name="menu_1">Settings</string>
+    <string name="search">Search by username</string>
+    <string name="search_hint">Search by username</string>
 </resources>
