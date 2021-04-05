@@ -37,6 +37,12 @@ class MainActivity : AppCompatActivity() {
         binding.progressBar.visibility = View.VISIBLE
 
         getUsersApi()
+
+        listUserAdapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: User) {
+                showSelectedUser(data)
+            }
+        })
     }
 
     private fun setActionBarTitle(title: String) {
@@ -97,12 +103,6 @@ class MainActivity : AppCompatActivity() {
     private fun showRecyclerList(usersTemp: ArrayList<User>) {
         listUserAdapter = UserAdapter(usersTemp)
         binding.rvList.adapter?.notifyDataSetChanged();
-
-        listUserAdapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback{
-            override fun onItemClicked(data: User) {
-                showSelectedUser(data)
-            }
-        })
     }
 
     private fun showSelectedUser(user: User) {

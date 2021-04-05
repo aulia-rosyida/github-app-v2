@@ -18,10 +18,6 @@ class UserAdapter(private val listUser: ArrayList<User>): RecyclerView.Adapter<U
         fun onItemClicked(data: User)
     }
 
-    fun refreshList() {
-        notifyDataSetChanged()
-    }
-
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ListViewHolder {
         val binding = ItemRowUserBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ListViewHolder(binding)
