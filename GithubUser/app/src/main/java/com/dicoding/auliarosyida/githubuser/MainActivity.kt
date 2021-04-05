@@ -1,10 +1,14 @@
 package com.dicoding.auliarosyida.githubuser
 
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.auliarosyida.githubuser.databinding.ActivityMainBinding
 import com.google.gson.Gson
@@ -17,7 +21,7 @@ import org.json.JSONObject
 class MainActivity : AppCompatActivity() {
     private var title: String = "Github User List"
     private lateinit var binding: ActivityMainBinding
-    private var users = arrayListOf<User>()
+    private var users = mutableListOf<User>()
     private var tempSearch = "aulia-"
     private var listUserAdapter = UserAdapter(users)
 
@@ -41,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         listUserAdapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback{
             override fun onItemClicked(data: User) {
-                getDetailUserApi(data, users.indexOf(data))
+                getDetailUserApi(data)
             }
         })
     }
@@ -50,11 +54,38 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = title
     }
 
+   override fun onCreateOptionsMenu(menu: Menu): Boolean {
+       val inflater = menuInflater
+       inflater.inflate(R.menu.option_menu, menu)
+
+       val manageSearch = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+       val viewSearch = menu.findItem(R.id.search).actionView as SearchView
+
+       viewSearch.setSearchableInfo(manageSearch.getSearchableInfo(componentName))
+       viewSearch.queryHint = resources.getString(R.string.search_hint)
+       viewSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+           //method ini ketika search selesai atau OK
+           override fun onQueryTextSubmit(query: String): Boolean {
+               Toast.makeText(this@MainActivity, query, Toast.LENGTH_SHORT).show()
+               tempSearch = query
+               log.d(TAG, "ini suda keganti querynyaw $query")
+               getUsersApi()
+               return true
+           }
+
+           // method ini untuk merespon tiap perubahan huruf pada searchView
+           override fun onQueryTextChange(newText: String): Boolean {
+               return false
+           }
+       })
+       return true
+   }
+
     private fun getUsersApi() {
         binding.progressBar.visibility = View.VISIBLE
         val client = AsyncHttpClient()
-        client.addHeader("Authorization", "token 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")
-        client.addHeader("User-Agent", "request")
+       client.addHeader("Authorization", "token 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")
+       client.addHeader("User-Agent", "request")
         val url = "https://api.github.com/search/users?q=$tempSearch"
 
         client.get(url, object : AsyncHttpResponseHandler() {
@@ -93,7 +124,11 @@ class MainActivity : AppCompatActivity() {
                 val data = gson.fromJson(dataObject.toString(), User::class.java)
                 listUser.add(data)
             }
-            users.addAll(listUser)
+            if(users.size == 0 )users.addAll(listUser)
+            else{
+                users.clear()
+                users.addAll(listUser)
+            }
             showRecyclerList(users)
         } catch (e: Exception) {
             Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_SHORT).show()
@@ -101,15 +136,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showRecyclerList(usersTemp: ArrayList<User>) {
+    private fun showRecyclerList(usersTemp: MutableList<User>) {
         listUserAdapter = UserAdapter(usersTemp)
         binding.rvList.adapter?.notifyDataSetChanged();
     }
 
-    private fun getDetailUserApi(aUser: User, idx: Int) {
+    private fun getDetailUserApi(aUser: User) {
         val clientDetail = AsyncHttpClient()
-        clientDetail.addHeader("Authorization", "token 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")
-        clientDetail.addHeader("User-Agent", "request")
+       clientDetail.addHeader("Authorization", "token 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")
+       clientDetail.addHeader("User-Agent", "request")
         val url = "https://api.github.com/users/${aUser.username}"
 
         clientDetail.get(url, object : AsyncHttpResponseHandler() {
