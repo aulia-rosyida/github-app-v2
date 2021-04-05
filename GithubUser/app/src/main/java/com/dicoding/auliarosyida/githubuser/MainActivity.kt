@@ -4,26 +4,29 @@ import android.content.Intent
 import android.content.res.TypedArray
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.auliarosyida.githubuser.databinding.ActivityMainBinding
+import com.dicoding.auliarosyida.githubuser.databinding.ItemRowUserBinding
+import com.google.gson.Gson
+import com.loopj.android.http.AsyncHttpClient
+import com.loopj.android.http.AsyncHttpResponseHandler
+import cz.msebera.android.httpclient.Header
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
     private var title: String = "Github User List"
     private lateinit var binding: ActivityMainBinding
     private var users = arrayListOf<User>()
+    private var tempSearch = "aulia-"
 
-//    private lateinit var adapter: UserAdapter
-//    private lateinit var dataUsername: Array<String>
-//    private lateinit var dataName: Array<String>
-//    private lateinit var dataLocation: Array<String>
-//    private lateinit var dataRepository: Array<String>
-//    private lateinit var dataCompany: Array<String>
-//    private lateinit var dataFollowers: Array<String>
-//    private lateinit var dataFollowing: Array<String>
-//    private lateinit var dataPhoto: TypedArray
+    companion object {
+        private val TAG = MainActivity::class.java.simpleName
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,47 +35,70 @@ class MainActivity : AppCompatActivity() {
 
         setActionBarTitle(title)
 
-        binding.rvList.setHasFixedSize(true)
-        users.addAll(getListUsers())
-        showRecyclerList()
+        binding.rvList?.setHasFixedSize(true)
+        getUsersApi()
     }
 
     private fun setActionBarTitle(title: String) {
         supportActionBar?.title = title
     }
 
-    private fun getListUsers(): ArrayList<User> {
+    private fun getUsersApi() {
+        binding.progressBar.visibility = View.VISIBLE
+        val client = AsyncHttpClient()
+        client.addHeader("Authorization", "token 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")
+        client.addHeader("User-Agent", "request")
+        val url = "https://api.github.com/search/users?q=$tempSearch"
 
-        val dataUsername = resources.getStringArray(R.array.username)
-        val dataName = resources.getStringArray(R.array.name)
-        val dataLocation = resources.getStringArray(R.array.location)
-        val dataRepository = resources.getStringArray(R.array.repository)
-        val dataCompany = resources.getStringArray(R.array.company)
-        val dataFollowers = resources.getStringArray(R.array.followers)
-        val dataFollowing = resources.getStringArray(R.array.following)
-        val dataPhoto = resources.obtainTypedArray(R.array.avatar)
+        client.get(url, object : AsyncHttpResponseHandler() {
+            override fun onSuccess(statusCode: Int, headers: Array<Header>, responseBody: ByteArray) {
+                // Jika koneksi berhasil
+                binding.progressBar.visibility = View.INVISIBLE
+                // Parsing JSON
+                val result = String(responseBody)
+                getListUsers(result)
 
-        val listUser = ArrayList<User>()
-        for (position in dataUsername.indices) {
-            val user = User(
-                    dataUsername[position],
-                    dataName[position],
-                    dataLocation[position],
-                    dataRepository[position],
-                    dataCompany[position],
-                    dataFollowers[position],
-                    dataFollowing[position],
-                    dataPhoto.getResourceId(position, -1)
-            )
-            listUser.add(user)
-        }
-        return listUser
+            }
+            override fun onFailure(statusCode: Int, headers: Array<Header>, responseBody: ByteArray, error: Throwable) {
+                // Jika koneksi gagal
+                binding.progressBar.visibility = View.INVISIBLE
+                val errorMessage = when (statusCode) {
+                    401 -> "$statusCode : Bad Request"
+                    403 -> "$statusCode : Forbidden"
+                    404 -> "$statusCode : Not Found"
+                    else -> "$statusCode : ${error.message}"
+                }
+                Toast.makeText(this@MainActivity, errorMessage, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
-    private fun showRecyclerList() {
-        binding.rvList.layoutManager = LinearLayoutManager(this)
-        val listUserAdapter = UserAdapter(users)
+    private fun getListUsers(response: String) {
+        val listUser = ArrayList<User>()
+
+        try{
+            val responseObject = JSONObject(response)
+            val dataArray = responseObject.getJSONArray("items")
+
+            val gson = Gson()
+            for(i in 0 until dataArray.length()){
+                val dataObject = dataArray.getJSONObject(i)
+                val data = gson.fromJson(dataObject.toString(), User::class.java)
+                listUser.add(data)
+                users.addAll(listUser)
+                showRecyclerList(users)
+            }
+
+        } catch (e: Exception) {
+            Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_SHORT).show()
+            e.printStackTrace()
+        }
+    }
+
+    private fun showRecyclerList(usersTemp: ArrayList<User>) {
+        val listUserAdapter = UserAdapter(usersTemp)
         binding.rvList.adapter = listUserAdapter
+        binding.rvList.layoutManager = LinearLayoutManager(this)
 
         listUserAdapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback{
             override fun onItemClicked(data: User) {

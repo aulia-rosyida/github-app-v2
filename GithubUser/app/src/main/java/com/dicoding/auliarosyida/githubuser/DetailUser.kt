@@ -4,9 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.dicoding.auliarosyida.githubuser.databinding.ActivityDetailUserBinding
+import com.dicoding.auliarosyida.githubuser.databinding.ActivityMainBinding
 
 class DetailUser : AppCompatActivity() {
     private var title: String = "User Detail"
+    private lateinit var binding: ActivityDetailUserBinding
 
     companion object {
         const val EXTRA_USER = "extra_user"
@@ -14,34 +19,27 @@ class DetailUser : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_user)
-
-        val tvImageReceived: ImageView = findViewById(R.id.img_received_photo)
-        val tvUnameReceived: TextView = findViewById(R.id.tv_received_username)
-        val tvNameReceived: TextView = findViewById(R.id.tv_received_name)
-        val tvLocationReceived: TextView = findViewById(R.id.tv_received_location)
-        val tvCompanyReceived: TextView = findViewById(R.id.tv_received_company)
-        val tvRepoReceived: TextView = findViewById(R.id.tv_received_repo)
-        val tvFollowersReceived: TextView = findViewById(R.id.tv_received_followers)
-        val tvFollowingReceived: TextView = findViewById(R.id.tv_received_following)
-        val tvRepo: TextView = findViewById(R.id.repo)
-        val tvFollower: TextView = findViewById(R.id.follower)
-        val tvFollowing: TextView = findViewById(R.id.following)
+        binding = ActivityDetailUserBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val user = intent.getParcelableExtra<User>(EXTRA_USER) as User
-        tvImageReceived.setImageResource(user.photo)
-        tvUnameReceived.text = user.username.toString()
-        tvNameReceived.text = user.name.toString()
-        tvLocationReceived.text = user.location.toString()
-        tvCompanyReceived.text = user.company.toString()
-        tvRepoReceived.text = user.repository.toString()
-        tvFollowersReceived.text = user.followers.toString()
-        tvFollowingReceived.text = user.following.toString()
-        tvRepo.text = getString(R.string.tag_repo)
-        tvFollower.text = getString(R.string.tag_followers)
-        tvFollowing.text = getString(R.string.tag_following)
 
-        title = "Detail of ${user.name.toString()}"
+        Glide.with(this)
+            .load(user.photo)
+            .apply(RequestOptions().override(550, 550))
+            .into(binding.imgReceivedPhoto)
+        binding.tvReceivedUsername.text = user.username
+        binding.tvReceivedName.text = user.name
+        binding.tvReceivedLocation.text = user.location
+        binding.tvReceivedCompany.text = user.company
+        binding.tvReceivedRepo.text = user.repository.toString()
+        binding.tvReceivedFollowers.text = user.followers.toString()
+        binding.tvReceivedFollowing.text = user.following.toString()
+        binding.repo.text = getString(R.string.tag_repo)
+        binding.follower.text = getString(R.string.tag_followers)
+        binding.following.text = getString(R.string.tag_following)
+
+        title = "Detail of ${user.name}"
         setActionBarTitle(title)
     }
 
