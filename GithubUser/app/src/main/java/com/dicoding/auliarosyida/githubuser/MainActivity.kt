@@ -73,5 +73,15 @@ class MainActivity : AppCompatActivity() {
         binding.rvList.layoutManager = LinearLayoutManager(this)
         val listUserAdapter = UserAdapter(users)
         binding.rvList.adapter = listUserAdapter
+
+        listUserAdapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: User) {
+                showSelectedUser(data)
+            }
+        })
+    }
+
+    private fun showSelectedUser(user: User) {
+        Toast.makeText(this, "Kamu memilih ${user.name}", Toast.LENGTH_SHORT).show()
     }
 }

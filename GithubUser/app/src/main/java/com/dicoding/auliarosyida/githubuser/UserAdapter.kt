@@ -14,6 +14,15 @@ import com.dicoding.auliarosyida.githubuser.databinding.ItemRowUserBinding
 
 class UserAdapter(private val listUser: ArrayList<User>): RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
 
+    private var onItemClickCallback: OnItemClickCallback? = null
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: User)
+    }
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ListViewHolder {
         val binding = ItemRowUserBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ListViewHolder(binding)
@@ -34,6 +43,8 @@ class UserAdapter(private val listUser: ArrayList<User>): RecyclerView.Adapter<U
                         .into(imgItemPhoto)
                 tvItemUsername.text = user.username
                 tvItemName.text = user.name
+
+                itemView.setOnClickListener { onItemClickCallback?.onItemClicked(user) }
             }
         }
     }
