@@ -116,7 +116,6 @@ class MainActivity : AppCompatActivity() {
             override fun onSuccess(statusCode: Int, headers: Array<Header>, responseBody: ByteArray) {
                 // Parsing JSON
                 val resultDetail = String(responseBody)
-                log.d(TAG, resultDetail)
 
                 val gson = Gson()
                 val dataObject = JSONObject(resultDetail)
@@ -138,8 +137,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSelectedUser(user: User) {
-        Toast.makeText(this, "Kamu memilih ${user.name?: user.username}", Toast.LENGTH_SHORT).show()
-
         val moveWithObjectIntent = Intent(this@MainActivity, DetailUser::class.java)
         moveWithObjectIntent.putExtra(DetailUser.EXTRA_USER, user)
         startActivity(moveWithObjectIntent)
