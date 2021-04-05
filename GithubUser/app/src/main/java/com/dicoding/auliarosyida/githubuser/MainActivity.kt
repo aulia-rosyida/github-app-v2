@@ -1,17 +1,12 @@
 package com.dicoding.auliarosyida.githubuser
 
 import android.content.Intent
-import android.content.res.TypedArray
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ListView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.auliarosyida.githubuser.databinding.ActivityMainBinding
-import com.dicoding.auliarosyida.githubuser.databinding.ItemRowUserBinding
 import com.google.gson.Gson
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
@@ -23,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var users = arrayListOf<User>()
     private var tempSearch = "aulia-"
+    private var listUserAdapter = UserAdapter(users)
 
     companion object {
         private val TAG = MainActivity::class.java.simpleName
@@ -35,7 +31,11 @@ class MainActivity : AppCompatActivity() {
 
         setActionBarTitle(title)
 
-        binding.rvList?.setHasFixedSize(true)
+        binding.rvList.setHasFixedSize(true)
+        binding.rvList.adapter = listUserAdapter
+        binding.rvList.layoutManager = LinearLayoutManager(this)
+        binding.progressBar.visibility = View.VISIBLE
+
         getUsersApi()
     }
 
@@ -85,10 +85,9 @@ class MainActivity : AppCompatActivity() {
                 val dataObject = dataArray.getJSONObject(i)
                 val data = gson.fromJson(dataObject.toString(), User::class.java)
                 listUser.add(data)
-                users.addAll(listUser)
-                showRecyclerList(users)
             }
-
+            users.addAll(listUser)
+            showRecyclerList(users)
         } catch (e: Exception) {
             Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_SHORT).show()
             e.printStackTrace()
@@ -96,9 +95,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showRecyclerList(usersTemp: ArrayList<User>) {
-        val listUserAdapter = UserAdapter(usersTemp)
-        binding.rvList.adapter = listUserAdapter
-        binding.rvList.layoutManager = LinearLayoutManager(this)
+        listUserAdapter = UserAdapter(usersTemp)
+        binding.rvList.adapter?.notifyDataSetChanged();
 
         listUserAdapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback{
             override fun onItemClicked(data: User) {
