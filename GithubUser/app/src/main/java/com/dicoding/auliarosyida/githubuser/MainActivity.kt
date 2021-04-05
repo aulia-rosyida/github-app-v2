@@ -180,7 +180,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSelectedUser(user: User) {
-        val moveWithObjectIntent = Intent(this@MainActivity, DetailUser::class.java)
+        val moveWithObjectIntent = Intent(this@MainActivity, TabLayoutActivity::class.java)
         moveWithObjectIntent.putExtra(DetailUser.EXTRA_USER, user)
         startActivity(moveWithObjectIntent)
     }

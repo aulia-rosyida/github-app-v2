@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class SectionsPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
+class SectionsPagerAdapter(activity: AppCompatActivity, detailUser: User) : FragmentStateAdapter(activity) {
+
+    var tempUser: User = detailUser
+
     override fun getItemCount(): Int {
         return 3
     }
@@ -12,7 +15,7 @@ class SectionsPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(a
     override fun createFragment(position: Int): Fragment {
         var fragment: Fragment? = null
         when (position) {
-            0 -> fragment = ProfileFragment()
+            0 -> fragment = ProfileFragment(tempUser)
             1 -> fragment = FollowersFragment()
             2 -> fragment = FollowingFragment()
         }
