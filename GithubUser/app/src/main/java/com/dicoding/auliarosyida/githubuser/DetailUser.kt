@@ -39,7 +39,7 @@ class DetailUser : AppCompatActivity() {
         binding.follower.text = getString(R.string.tag_followers)
         binding.following.text = getString(R.string.tag_following)
 
-        title = "Detail of ${user.name}"
+        title = "Detail of ${user.name?: user.username}"
         setActionBarTitle(title)
     }
 
