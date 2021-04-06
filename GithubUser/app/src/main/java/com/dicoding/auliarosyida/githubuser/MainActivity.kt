@@ -128,11 +128,12 @@ class MainActivity : AppCompatActivity() {
                 val data = gson.fromJson(dataObject.toString(), User::class.java)
                 listUser.add(data)
             }
-            if(users.size == 0 )users.addAll(listUser)
-            else if(listUser.size == 0){
+
+            if(listUser.size == 0){
                 users.clear()
                 users.add(dummyUser)
             }
+            else if(users.size == 0 )users.addAll(listUser)
             else{
                 users.clear()
                 users.addAll(listUser)
