@@ -28,8 +28,11 @@ class TabLayoutActivity : AppCompatActivity() {
 
         val user = intent.getParcelableExtra<User>(EXTRA_USER) as User
 
+        //untuk menghubungkan SectionsPagerAdapter dengan ViewPager2
         val sectionsPagerAdapter = SectionsPagerAdapter(this, user)
         binding.viewPager.adapter = sectionsPagerAdapter
+
+        //menghubungkan ViewPager2 dengan TabLayout dengan menggunakan TabLayoutMediator
         TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
