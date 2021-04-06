@@ -1,21 +1,30 @@
 package com.dicoding.auliarosyida.githubuser
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.auliarosyida.githubuser.databinding.FragmentProfileBinding
 
 class ProfileFragment (detailUser: User) : Fragment(R.layout.fragment_profile) {
 
-    private var fragmentProfileBinding: FragmentProfileBinding? = null
+    private var _binding: FragmentProfileBinding? = null
+    private val binding: FragmentProfileBinding
+        get() = requireNotNull(_binding)
     var user: User = detailUser
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = FragmentProfileBinding.bind(view)
-        fragmentProfileBinding = binding
 
         Glide.with(this)
             .load(user.photo)
@@ -35,7 +44,7 @@ class ProfileFragment (detailUser: User) : Fragment(R.layout.fragment_profile) {
 
     override fun onDestroyView() {
         // Do not store the binding instance in a field, if not required.
-        fragmentProfileBinding = null
         super.onDestroyView()
+        _binding = null
     }
 }
