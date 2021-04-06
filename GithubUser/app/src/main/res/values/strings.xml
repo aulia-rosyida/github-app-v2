@@ -1,22 +1,26 @@
 <resources>
     <string name="app_name">GithubUser</string>
-    <string name="name">Name github</string>
-    <string name="username">Username github</string>
-    <string name="lorem">Lorem</string>
+    <string name="name">Name Github</string>
+    <string name="username" translatable="false">Username Github</string>
+    <string name="lorem" translatable="false">Lorem</string>
     <string name="location">Location</string>
-    <string name="total_repo">XXX</string>
-    <string name="total_followers">YYY</string>
-    <string name="total_following">ZZZ</string>
+    <string name="total_repo" translatable="false">XXX</string>
+    <string name="total_followers" translatable="false">YYY</string>
+    <string name="total_following" translatable="false">ZZZ</string>
     <string name="tag_repo">Repositories</string>
     <string name="tag_followers">Followers</string>
     <string name="tag_following">Following</string>
     <string name="company">Company</string>
     <string name="by_developer">by Aulia Rosyida</string>
-    <string name="footprint">Developed with passion</string>
+    <string name="footprint">Developed patiently</string>
     <string name="menu_1">Settings</string>
-    <string name="search">Search by username</string>
+    <string name="search">"Search "</string>
     <string name="search_hint">Search by username</string>
-    <string name="content_tab_text">This is Tab %1$d</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tag_profile">Profile</string>
+    <string name="change_language_settings">Change Language Settings</string>
+    <string name="mainTitle">Github User List</string>
+    <string name="TryOtherUname">Please try with another username</string>
+    <string name="CouldNotFind">Sorry, this username could not been find</string>
+    <string name="ZeroFollower">This user has 0 of Follower</string>
+    <string name="ZeroFollowing">This user has 0 of Following</string>
 </resources>

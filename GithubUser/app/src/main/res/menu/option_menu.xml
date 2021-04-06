@@ -9,10 +9,10 @@
         app:showAsAction="collapseActionView|always" />
 
     <group android:menuCategory="container">
-        <item android:id="@+id/menu1"
-            android:title="@string/menu_1"
-            android:icon = "@drawable/ic_baseline_settings_white_24px"
-            app:showAsAction="always" />
+        <item
+            android:id="@+id/action_change_settings"
+            android:title="@string/change_language_settings"
+            app:showAsAction="never"/>
     </group>
 
 </menu>
