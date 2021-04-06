@@ -16,8 +16,8 @@ class SectionsPagerAdapter(activity: AppCompatActivity, detailUser: User) : Frag
         var fragment: Fragment? = null
         when (position) {
             0 -> fragment = ProfileFragment(tempUser)
-            1 -> fragment = FollowersFragment()
-            2 -> fragment = FollowingFragment()
+            1 -> fragment = FollowersFragment.newInstance(1, "${tempUser.username}")
+            2 -> fragment = FollowersFragment.newInstance(2, "${tempUser.username}")
         }
         return fragment as Fragment
     }

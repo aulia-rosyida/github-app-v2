@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     private var users = mutableListOf<User>()
 
     private var listUserAdapter = UserAdapter(users)
-    private var dummyUser = User("Please try with another username","Sorry, this username could not been find", "", "","","","","")
+    var dummyUser = User("Please try with another username","Sorry, this username could not been find", "", "","","","","")
 
     companion object {
         private val TAG = MainActivity::class.java.simpleName
