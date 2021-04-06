@@ -5,19 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import android.widget.Toast.makeText
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.auliarosyida.githubuser.databinding.FragmentFollowersBinding
-import com.dicoding.auliarosyida.githubuser.databinding.FragmentProfileBinding
 import com.google.gson.Gson
 import com.loopj.android.http.AsyncHttpClient
-import com.loopj.android.http.AsyncHttpClient.log
 import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
 import org.json.JSONArray
-import org.json.JSONObject
 
 class FollowersFragment : Fragment(R.layout.fragment_followers) {
 
@@ -27,8 +23,8 @@ class FollowersFragment : Fragment(R.layout.fragment_followers) {
 
     private var users = mutableListOf<User>()
     private var listUserAdapter = UserAdapter(users)
-    var dummyFollower = User("This user has 0 of Follower","follower disini", "", "","","","","")
-    var dummyFollowing = User("This user has 0 of Following","following disini", "", "","","","","")
+    var dummyFollower = User("This user has 0 of Follower","", "", "","","","","")
+    var dummyFollowing = User("This user has 0 of Following","", "", "","","","","")
 
     var tab = ""
 
@@ -36,7 +32,6 @@ class FollowersFragment : Fragment(R.layout.fragment_followers) {
 
         private const val ARG_SECTION_NUMBER = "section_number"
         private const val ARG_USERNAME = "username"
-        private val TAG = TabLayoutActivity::class.java.simpleName
 
         @JvmStatic
         fun newInstance(index: Int, uname: String) =
@@ -60,9 +55,6 @@ class FollowersFragment : Fragment(R.layout.fragment_followers) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val tvLabel: TextView = view.findViewById(R.id.section_label)
-//        val index = arguments?.getInt(ARG_SECTION_NUMBER, 0)
-//        tvLabel.text = getString(R.string.content_tab_text, index)
 
         binding.rvFollowers.setHasFixedSize(true)
         binding.rvFollowers.adapter = listUserAdapter
@@ -122,16 +114,13 @@ class FollowersFragment : Fragment(R.layout.fragment_followers) {
                 val data = gson.fromJson(dataObject.toString(), User::class.java)
                 listUser.add(data)
             }
-            log.d(TAG, "ini size listUsernya $tab - ${listUser.size}")
 
             if(listUser.size == 0){
-                log.d(TAG, "masuk if krn listUser.size == ${listUser.size}")
                 users.clear()
                 users.add(dummyUser)
             }
             else if(users.size == 0 ) users.addAll(listUser)
             else{
-                log.d(TAG, "masuk else krn listUser.size == ${listUser.size}")
                 users.clear()
                 users.addAll(listUser)
             }

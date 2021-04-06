@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.auliarosyida.githubuser.databinding.ActivityMainBinding
 import com.google.gson.Gson
 import com.loopj.android.http.AsyncHttpClient
-import com.loopj.android.http.AsyncHttpClient.log
 import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
 import org.json.JSONObject
@@ -28,10 +27,6 @@ class MainActivity : AppCompatActivity() {
 
     private var listUserAdapter = UserAdapter(users)
     var dummyUser = User("Please try with another username","Sorry, this username could not been find", "", "","","","","")
-
-    companion object {
-        private val TAG = MainActivity::class.java.simpleName
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +67,6 @@ class MainActivity : AppCompatActivity() {
            override fun onQueryTextSubmit(query: String): Boolean {
                Toast.makeText(this@MainActivity, query, Toast.LENGTH_SHORT).show()
                tempSearch = query
-               log.d(TAG, "ini suda keganti querynyaw $query")
                getUsersApi()
                return true
            }
