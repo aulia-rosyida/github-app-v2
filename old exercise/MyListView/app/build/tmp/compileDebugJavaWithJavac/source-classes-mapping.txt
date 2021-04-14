@@ -1,6 +1,0 @@
-com/dicoding/auliarosyida/mylistview/BuildConfig.java
- com.dicoding.auliarosyida.mylistview.BuildConfig
-com/dicoding/auliarosyida/mylistview/databinding/ItemHeroBinding.java
- com.dicoding.auliarosyida.mylistview.databinding.ItemHeroBinding
-com/dicoding/auliarosyida/mylistview/databinding/ActivityMainBinding.java
- com.dicoding.auliarosyida.mylistview.databinding.ActivityMainBinding

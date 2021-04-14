@@ -1,6 +1,0 @@
-com/dicoding/auliarosyida/myquote/BuildConfig.java
- com.dicoding.auliarosyida.myquote.BuildConfig
-com/dicoding/auliarosyida/myquote/databinding/ActivityListQuotesBinding.java
- com.dicoding.auliarosyida.myquote.databinding.ActivityListQuotesBinding
-com/dicoding/auliarosyida/myquote/databinding/ActivityMainBinding.java
- com.dicoding.auliarosyida.myquote.databinding.ActivityMainBinding

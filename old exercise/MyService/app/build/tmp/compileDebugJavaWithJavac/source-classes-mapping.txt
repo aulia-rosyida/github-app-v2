@@ -1,4 +1,0 @@
-com/dicoding/auliarosyida/myservice/BuildConfig.java
- com.dicoding.auliarosyida.myservice.BuildConfig
-com/dicoding/auliarosyida/myservice/databinding/ActivityMainBinding.java
- com.dicoding.auliarosyida.myservice.databinding.ActivityMainBinding

@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">Veggies App</string>
-    <string name="veggies_name">name of veggie</string>
-    <string name="detail">detail of veggie</string>
-    <string name="profile">profile</string>
-    <string name="developer_name">Aulia Rosyida</string>
-    <string name="developer_email">a0101005@bangkit.academy</string>
-    <string name="welcome">Welcome to Veggies !</string>
-</resources>

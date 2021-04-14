@@ -1,4 +1,0 @@
-com/dicoding/auliarosyida/myworkmanager/BuildConfig.java
- com.dicoding.auliarosyida.myworkmanager.BuildConfig
-com/dicoding/auliarosyida/myworkmanager/databinding/ActivityMainBinding.java
- com.dicoding.auliarosyida.myworkmanager.databinding.ActivityMainBinding

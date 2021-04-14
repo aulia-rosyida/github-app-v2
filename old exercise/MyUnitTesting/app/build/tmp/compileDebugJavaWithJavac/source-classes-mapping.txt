@@ -1,4 +1,0 @@
-com/dicoding/auliarosyida/myunittesting/BuildConfig.java
- com.dicoding.auliarosyida.myunittesting.BuildConfig
-com/dicoding/auliarosyida/myunittesting/databinding/ActivityMainBinding.java
- com.dicoding.auliarosyida.myunittesting.databinding.ActivityMainBinding
